@@ -1,11 +1,6 @@
 spring:
   application:
     name: config
-    
-# 服务名称 和 数据库
-spring:
-  application:
-    name: oeder
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://211.159.173.163:3306/springcloud_sell?characterEncoding=utf-8&useSSL=false

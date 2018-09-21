@@ -1,0 +1,51 @@
+#服务端口号
+server:
+  port: 8881
+
+# 服务名称 和 数据库
+spring:
+  application:
+    name: oeder
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://211.159.173.163:3306/springcloud_sell?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: niaoren123456
+  # 使用jpa插件
+  jpa:
+    show-sql: true
+
+# true 开启 @FeignClient 中使用  fallback   断路器的使用
+feign:
+  hystrix:
+    enabled: true
+
+# 向eureka注册服务
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+# 配置负载均衡的规则
+# RoundRobinRule	简单轮询服务列表来选择服务器。它是Ribbon默认的负载均衡规则。
+# AvailabilityFilteringRule
+# 对以下两种服务器进行忽略：
+# （1）在默认情况下，这台服务器如果3次连接失败，这台服务器就会被设置为“短路”状态。短路状态将持续30秒，如果再次连接失败，短路的持续时间就会几何级地增加。
+# 注意：可以通过修改配置loadbalancer.<clientName>.connectionFailureCountThreshold来修改连接失败多少次之后被设置为短路状态。默认是3次。
+# （2）并发数过高的服务器。如果一个服务器的并发连接数过高，配置了AvailabilityFilteringRule规则的客户端也会将其忽略。并发连接数的上线，可以由客户端的<clientName>.<clientConfigNameSpace>.ActiveConnectionsLimit属性进行配置。
+# WeightedResponseTimeRule	为每一个服务器赋予一个权重值。服务器响应时间越长，这个服务器的权重就越小。这个规则会随机选择服务器，这个权重值会影响服务器的选择。
+# ZoneAvoidanceRule	以区域可用的服务器为基础进行服务器的选择。使用Zone对服务器进行分类，这个Zone可以理解为一个机房、一个机架等。
+# BestAvailableRule	忽略哪些短路的服务器，并选择并发数较低的服务器。
+# RandomRule	随机选择一个可用的服务器。
+# Retry	重试机制的选择逻辑
+
+# NFLoadBalancerRuleClassName，可以通过这个配置项定制需要的负载均衡规则，可以是ribbon提供的原生的几种规则类，也可以是自己实现的规则类，这些类都实现了IRule接口。指定负载均衡器的实现类。当然，可以设置自己实现的负载均衡器。
+# NFLoadBalancerPingClassName用于配置查看服务器是否存活。
+# NIWSServerListClassName是服务器列表的处理类，用来维护服务器列表的。Ribbon已经实现了动态服务器列表。
+# NIWSServerListFilterClassName是服务器的拦截类。
+users: #微服务名称
+  ribbon:
+    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
+
+

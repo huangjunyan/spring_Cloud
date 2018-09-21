@@ -48,4 +48,6 @@ users: #微服务名称
     NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
 
-
+#
+env:
+  dev

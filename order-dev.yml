@@ -13,7 +13,7 @@ spring:
     password: niaoren123456
   # 使用jpa插件
   jpa:
-    show-sql: true
+    show-sql: false
 
 # true 开启 @FeignClient 中使用  fallback   断路器的使用
 feign:

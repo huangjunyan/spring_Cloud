@@ -14,6 +14,11 @@ spring:
   # 使用jpa插件
   jpa:
     show-sql: false
+  rabbitmq:
+   host: localhost
+   port: 5672
+   username: guest
+   password: guest
 
 # true 开启 @FeignClient 中使用  fallback   断路器的使用
 feign:
